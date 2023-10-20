@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .navbar {
+            background-color: #bde214;
+        }
+
+        .navbar a {
+            color: #333;
+        }
+
+        .navbar a:hover {
+            color: #000;
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .recommend-form {
+            margin-top: 20px;
+        }
+
+        .book-card {
+            background-color: #333;
+            border: 1px solid #666;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .book-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">My Book Recommender</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/recommend">Recommend</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-white" style="font-size: 50px; margin-top: 20px;">Recommend Books</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <form class="recommend-form" action="/recommend_books" method="post">
+                    <div class="input-group">
+                        <input name="user_input" type="text" class="form-control input-lg"
+                            placeholder="Enter your preference">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-warning btn-lg">Recommend</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+
+            {% if data %}
+
+            {% for i in data %}
+            <div class="col-md-3">
+                <div class="book-card">
+                    <img class="img-responsive" src="{{ i[2] }}" alt="{{ i[0] }}">
+                    <h4 class="text-white">{{ i[1] }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% endif %}
+
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="text-white" style="font-size: 50px; margin-top: 20px;">Another top books</h1>
+        <div class="row">
+            {% for i in range(book_name|length) %}
+            <div class="col-md-3">
+                <div class="book-card">
+                    <img class="img-responsive" src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                    <p class="text-white">{{ book_name[i] }}</p>
+                    <h4 class="text-white">{{ author[i] }}</h4>
+                    <h4 class="text-white">Votes - {{ votes[i] }}</h4>
+                    <h4 class="text-white">Rating - {{ rating[i] }}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+
+</html>
