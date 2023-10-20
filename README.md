@@ -17,9 +17,6 @@ This is a book recommender system built with Python, Jupyter Notebook, and Flask
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Getting Started
 
